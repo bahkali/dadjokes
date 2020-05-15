@@ -5,7 +5,6 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      weather: null,
       joke: {},
     };
   }
@@ -15,6 +14,7 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((jokes) => {
         let str = jokes.attachments[0].text.split("?");
+        console.log(str);
         this.setState({
           joke: {
             question: str[0],
@@ -24,12 +24,20 @@ class App extends React.Component {
         console.log(this.state.joke);
       });
 
+    //get the weather
     // fetch("")
     //   .then((response) => response.json())
     //   .then((users) => this.setState({ }));
   }
   render() {
-    return <div className="App">Hello</div>;
+    const { joke } = this.state;
+    return (
+      <div className="container ">
+        <h1>DAD'S JOKES</h1>
+        <h2>{joke.question}</h2>
+        <h3>{joke.answer}</h3>
+      </div>
+    );
   }
 }
 
